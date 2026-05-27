@@ -1091,7 +1091,7 @@ def get_dataset_id_from_context(metric_key: str) -> int:
     )
 
     if has_request_context():
-        if payload := request.get_json(cache=True) if request.is_json else None:
+        if payload := request.get_json() if request.is_json else None:
             if dataset_id := payload.get("datasource", {}).get("id"):
                 return dataset_id
             form_data.update(payload.get("form_data", {}))
